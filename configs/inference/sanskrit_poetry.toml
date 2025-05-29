@@ -1,0 +1,9 @@
+model_name         = "Qwen/Qwen2.5-0.5B-Instruct"
+dataset = "nippun-live/sanskrit-poetry-infer-ready"
+batch_size         = 1
+dp                 = 1
+rollout_path       = "outputs"       # where infer writes checkpoints
+output_path        = "data_rollout"  # where infer writes rollouts
+clean_output_path  = false
+max_model_len      = 64
+
