@@ -1,0 +1,24 @@
+model_name = "Qwen/Qwen2.5-0.5B-Instruct"
+project    = "sanskrit-debug"
+
+[train]
+micro_bs         = 1
+attn_impl        = "flash_attention_2"
+reshard_after_forward   = false   # turn off FSDP unshard-after-forward
+torch_compile           = false   # (optional) simpler
+
+
+[optim]
+batch_size          = 1    # total samples per update (must be ≥ micro_bs and divisible)
+step_per_rollout    = 1    # how many rollouts you ingest before each optimizer step
+
+[optim.optim]
+lr                  = 1e-6
+
+[data]
+path                = "data_rollout"
+seq_length          = 64  # shrink sequence length from 2048 to 512 if needed
+
+[ckpt]
+rollout_path           = "data_rollout"
+clean_rollout_path     = false
